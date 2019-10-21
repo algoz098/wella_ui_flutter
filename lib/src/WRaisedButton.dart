@@ -1,4 +1,4 @@
-library wella_lib;
+library w_raised_button;
 
 import 'package:flutter/material.dart';
 
