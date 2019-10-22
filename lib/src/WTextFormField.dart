@@ -11,6 +11,7 @@ class WTextFormField extends StatefulWidget {
   final Function onFieldSubmitted;
   final bool obscureText;
   final textInputAction;
+  final TextInputType keyboardType;
 
   final errors;
   
@@ -23,7 +24,8 @@ class WTextFormField extends StatefulWidget {
     this.obscureText = false,
     this.text,
     this.textInputAction,
-    this.name
+    this.name,
+    this.keyboardType
   }) : super(key: key);
 
   @override
@@ -62,6 +64,8 @@ class _WTextFormFieldState extends State<WTextFormField> {
           onFieldSubmitted: widget.onFieldSubmitted,
           
           obscureText: widget.obscureText,
+
+          keyboardType: widget.keyboardType,
 
           decoration: InputDecoration(
             labelText: widget.text,
