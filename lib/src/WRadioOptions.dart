@@ -7,7 +7,7 @@ class WRadioOptions extends StatefulWidget {
   final List<Map> options;
   // final String name;
 
-  String controller;
+  TextEditingController controller;
 
   // final errors;
   
@@ -25,6 +25,15 @@ class WRadioOptions extends StatefulWidget {
 }
 
 class _WRadioOptionsState extends State<WRadioOptions> {
+  var _internalValue;
+
+  @override
+  void initState() {
+    _internalValue = widget.controller.text;
+    
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -58,7 +67,9 @@ _onChanged(value) {
   // print("antes: ${widget.controller}, depois: $value");
 
   setState(() {
-    widget.controller = value;
+    widget.controller.text = value;
+    _internalValue = value;
+
   });
 }
 
@@ -79,7 +90,7 @@ _listOptions() {
             Radio(
               value: item['value'],
 
-              groupValue: widget.controller,
+              groupValue: _internalValue,
 
               onChanged: _onChanged,
             ),
