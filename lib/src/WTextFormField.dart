@@ -12,6 +12,11 @@ class WTextFormField extends StatefulWidget {
   final bool obscureText;
   final textInputAction;
   final TextInputType keyboardType;
+  final fillColor;
+  final bool filled;
+  final borderRadius;
+  final borderColor;
+  final String hintText;
 
   final errors;
   
@@ -25,7 +30,12 @@ class WTextFormField extends StatefulWidget {
     this.text,
     this.textInputAction,
     this.name,
-    this.keyboardType
+    this.keyboardType,
+    this.fillColor: Colors.transparent,
+    this.filled: true,
+    this.borderRadius: 0,
+    this.borderColor: Colors.black,
+    this.hintText: '',
   }) : super(key: key);
 
   @override
@@ -69,10 +79,30 @@ class _WTextFormFieldState extends State<WTextFormField> {
 
           decoration: InputDecoration(
             labelText: widget.text,
+
+            fillColor: widget.fillColor,
+
+            filled: widget.filled,
+
+            hintText: widget.hintText,
+
+            enabledBorder: _borderParser(),
+
+            border: _borderParser()
           ),
         ),
       ],
     );
+  }
+
+  _borderParser() {
+    if (widget.borderRadius > 0) return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(widget.borderRadius),
+
+      borderSide: BorderSide(color: widget.borderColor, width: 1.5),
+    );
+
+    return null;
   }
 
   _onChanged() {
